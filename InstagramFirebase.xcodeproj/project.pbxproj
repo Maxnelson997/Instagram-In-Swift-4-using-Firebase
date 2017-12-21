@@ -14,6 +14,7 @@
 		792CEB151FEB3C2600BA7543 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB141FEB3C2600BA7543 /* UserProfileController.swift */; };
 		792CEB181FEB400500BA7543 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB171FEB400500BA7543 /* UserProfileHeader.swift */; };
 		792CEB1B1FEB509500BA7543 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB1A1FEB509500BA7543 /* LoginController.swift */; };
+		792CEB1E1FEB6C3C00BA7543 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */; };
 		7943DEC41FEAFBE70093A783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEC31FEAFBE70093A783 /* AppDelegate.swift */; };
 		7943DEC61FEAFBE70093A783 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEC51FEAFBE70093A783 /* SignUpController.swift */; };
 		7943DEC91FEAFBE70093A783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7943DEC71FEAFBE70093A783 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		792CEB141FEB3C2600BA7543 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		792CEB171FEB400500BA7543 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		792CEB1A1FEB509500BA7543 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		7943DEC01FEAFBE70093A783 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7943DEC31FEAFBE70093A783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7943DEC51FEAFBE70093A783 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		792CEB1C1FEB6C2900BA7543 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */,
+			);
+			path = AddPhoto;
+			sourceTree = "<group>";
+		};
 		7943DEB71FEAFBE70093A783 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 		7943DEC21FEAFBE70093A783 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				792CEB1C1FEB6C2900BA7543 /* AddPhoto */,
 				792CEB191FEB508C00BA7543 /* Login */,
 				792CEB161FEB3FFB00BA7543 /* UserProfile */,
 				7943DEF41FEB07E20093A783 /* utils */,
@@ -495,6 +506,7 @@
 				7943DECC1FEAFBE70093A783 /* InstagramFirebase.xcdatamodeld in Sources */,
 				792CEB181FEB400500BA7543 /* UserProfileHeader.swift in Sources */,
 				7943DEC61FEAFBE70093A783 /* SignUpController.swift in Sources */,
+				792CEB1E1FEB6C3C00BA7543 /* PhotoSelectorController.swift in Sources */,
 				792CEB151FEB3C2600BA7543 /* UserProfileController.swift in Sources */,
 				792CEB131FEB3BB400BA7543 /* MainTabBarController.swift in Sources */,
 				792CEB1B1FEB509500BA7543 /* LoginController.swift in Sources */,
