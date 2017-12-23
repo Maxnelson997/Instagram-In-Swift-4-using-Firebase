@@ -49,6 +49,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.titleView = titleImage
     }
 
+
     //datasource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
@@ -61,7 +62,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        var height:CGFloat = 40 + 8 + 8
+        //username userprofileimageview
+        height += view.frame.width
+        height += 50
+        //post bottom controls
+        height += 85
+        
+        //caption
+        
+        return CGSize(width: view.frame.width, height: height)
     }
     
 }
