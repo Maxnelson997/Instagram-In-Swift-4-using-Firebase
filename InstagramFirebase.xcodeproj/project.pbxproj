@@ -17,6 +17,7 @@
 		792CEB1E1FEB6C3C00BA7543 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */; };
 		792CEB201FEB855700BA7543 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB1F1FEB855700BA7543 /* PhotoSelectorCell.swift */; };
 		792CEB221FEB884F00BA7543 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CEB211FEB884F00BA7543 /* PhotoSelectorHeader.swift */; };
+		79405ECA1FEDD3AA0003F9FF /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79405EC91FEDD3AA0003F9FF /* HomeController.swift */; };
 		7943DEC41FEAFBE70093A783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEC31FEAFBE70093A783 /* AppDelegate.swift */; };
 		7943DEC61FEAFBE70093A783 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEC51FEAFBE70093A783 /* SignUpController.swift */; };
 		7943DEC91FEAFBE70093A783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7943DEC71FEAFBE70093A783 /* Main.storyboard */; };
@@ -27,6 +28,11 @@
 		7943DEE71FEAFBE70093A783 /* InstagramFirebaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEE61FEAFBE70093A783 /* InstagramFirebaseUITests.swift */; };
 		7943DEF61FEB07EF0093A783 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7943DEF51FEB07EF0093A783 /* Extensions.swift */; };
 		7943DEF81FEB0F900093A783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7943DEF71FEB0F900093A783 /* GoogleService-Info.plist */; };
+		7991CDAB1FEDD4BB004A2CDA /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7991CDAA1FEDD4BB004A2CDA /* HomePostCell.swift */; };
+		79E470731FECDF9200D89833 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470721FECDF9200D89833 /* SharePhotoController.swift */; };
+		79E470761FECFC9B00D89833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470751FECFC9B00D89833 /* Post.swift */; };
+		79E470781FECFD9900D89833 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470771FECFD9900D89833 /* UserProfilePhotoCell.swift */; };
+		79E4707A1FED024700D89833 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470791FED024700D89833 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,7 @@
 		792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		792CEB1F1FEB855700BA7543 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		792CEB211FEB884F00BA7543 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		79405EC91FEDD3AA0003F9FF /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		7943DEC01FEAFBE70093A783 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7943DEC31FEAFBE70093A783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7943DEC51FEAFBE70093A783 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -73,6 +80,11 @@
 		7943DEE81FEAFBE70093A783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7943DEF51FEB07EF0093A783 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7943DEF71FEB0F900093A783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7991CDAA1FEDD4BB004A2CDA /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		79E470721FECDF9200D89833 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
+		79E470751FECFC9B00D89833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		79E470771FECFD9900D89833 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		79E470791FED024700D89833 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		A96C89305B51D2BD989A39A4 /* Pods_InstagramFirebaseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebaseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BFE1BDC25642A6EF6BDC47 /* Pods_InstagramFirebaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA49BB05AA3B279ACFE20294 /* Pods-InstagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +126,7 @@
 			children = (
 				792CEB141FEB3C2600BA7543 /* UserProfileController.swift */,
 				792CEB171FEB400500BA7543 /* UserProfileHeader.swift */,
+				79E470771FECFD9900D89833 /* UserProfilePhotoCell.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -133,8 +146,18 @@
 				792CEB1D1FEB6C3C00BA7543 /* PhotoSelectorController.swift */,
 				792CEB1F1FEB855700BA7543 /* PhotoSelectorCell.swift */,
 				792CEB211FEB884F00BA7543 /* PhotoSelectorHeader.swift */,
+				79E470721FECDF9200D89833 /* SharePhotoController.swift */,
 			);
 			path = AddPhoto;
+			sourceTree = "<group>";
+		};
+		79405EC81FEDD3A10003F9FF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				79405EC91FEDD3AA0003F9FF /* HomeController.swift */,
+				7991CDAA1FEDD4BB004A2CDA /* HomePostCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		7943DEB71FEAFBE70093A783 = {
@@ -162,6 +185,8 @@
 		7943DEC21FEAFBE70093A783 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				79405EC81FEDD3A10003F9FF /* Home */,
+				79E470741FECFC9100D89833 /* Models */,
 				792CEB1C1FEB6C2900BA7543 /* AddPhoto */,
 				792CEB191FEB508C00BA7543 /* Login */,
 				792CEB161FEB3FFB00BA7543 /* UserProfile */,
@@ -200,8 +225,17 @@
 			isa = PBXGroup;
 			children = (
 				7943DEF51FEB07EF0093A783 /* Extensions.swift */,
+				79E470791FED024700D89833 /* CustomImageView.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		79E470741FECFC9100D89833 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79E470751FECFC9B00D89833 /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		826AC46CE58FAAE7AD7A6C8A /* Pods */ = {
@@ -510,14 +544,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7943DECC1FEAFBE70093A783 /* InstagramFirebase.xcdatamodeld in Sources */,
+				7991CDAB1FEDD4BB004A2CDA /* HomePostCell.swift in Sources */,
 				792CEB181FEB400500BA7543 /* UserProfileHeader.swift in Sources */,
 				7943DEC61FEAFBE70093A783 /* SignUpController.swift in Sources */,
 				792CEB1E1FEB6C3C00BA7543 /* PhotoSelectorController.swift in Sources */,
+				79E4707A1FED024700D89833 /* CustomImageView.swift in Sources */,
 				792CEB151FEB3C2600BA7543 /* UserProfileController.swift in Sources */,
 				792CEB131FEB3BB400BA7543 /* MainTabBarController.swift in Sources */,
+				79E470761FECFC9B00D89833 /* Post.swift in Sources */,
+				79E470731FECDF9200D89833 /* SharePhotoController.swift in Sources */,
 				792CEB221FEB884F00BA7543 /* PhotoSelectorHeader.swift in Sources */,
 				792CEB1B1FEB509500BA7543 /* LoginController.swift in Sources */,
 				7943DEC41FEAFBE70093A783 /* AppDelegate.swift in Sources */,
+				79405ECA1FEDD3AA0003F9FF /* HomeController.swift in Sources */,
+				79E470781FECFD9900D89833 /* UserProfilePhotoCell.swift in Sources */,
 				7943DEF61FEB07EF0093A783 /* Extensions.swift in Sources */,
 				792CEB201FEB855700BA7543 /* PhotoSelectorCell.swift in Sources */,
 			);
