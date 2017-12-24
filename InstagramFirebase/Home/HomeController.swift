@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
@@ -23,9 +24,20 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchPosts()
     }
    
+
+    
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("posts").child(uid)
+        
+        Database.fetchUserWith(uid: uid) { user in
+            self.fetchPostsWithUser(user: user)
+        }
+
+    }
+    
+    fileprivate func fetchPostsWithUser(user: User) {
+        
+        let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String:Any] else { return }
@@ -33,7 +45,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             dictionaries.forEach({ (key,value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(dictionary: dictionary)
+                let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
             })
             
