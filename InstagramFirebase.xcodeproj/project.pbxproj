@@ -30,6 +30,8 @@
 		7943DEF81FEB0F900093A783 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7943DEF71FEB0F900093A783 /* GoogleService-Info.plist */; };
 		797D524B1FEF4B0700B76F6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797D524A1FEF4B0700B76F6A /* User.swift */; };
 		797D524D1FEF848B00B76F6A /* FirebaseDatabaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797D524C1FEF848B00B76F6A /* FirebaseDatabaseUtils.swift */; };
+		797D52501FEF8FAE00B76F6A /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797D524F1FEF8FAE00B76F6A /* UserSearchController.swift */; };
+		797D52521FEF936500B76F6A /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797D52511FEF936500B76F6A /* UserSearchCell.swift */; };
 		7991CDAB1FEDD4BB004A2CDA /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7991CDAA1FEDD4BB004A2CDA /* HomePostCell.swift */; };
 		79E470731FECDF9200D89833 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470721FECDF9200D89833 /* SharePhotoController.swift */; };
 		79E470761FECFC9B00D89833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E470751FECFC9B00D89833 /* Post.swift */; };
@@ -84,6 +86,8 @@
 		7943DEF71FEB0F900093A783 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		797D524A1FEF4B0700B76F6A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		797D524C1FEF848B00B76F6A /* FirebaseDatabaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseUtils.swift; sourceTree = "<group>"; };
+		797D524F1FEF8FAE00B76F6A /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
+		797D52511FEF936500B76F6A /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		7991CDAA1FEDD4BB004A2CDA /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		79E470721FECDF9200D89833 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		79E470751FECFC9B00D89833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 		7943DEC21FEAFBE70093A783 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				797D524E1FEF8FA100B76F6A /* Search */,
 				79405EC81FEDD3A10003F9FF /* Home */,
 				79E470741FECFC9100D89833 /* Models */,
 				792CEB1C1FEB6C2900BA7543 /* AddPhoto */,
@@ -233,6 +238,15 @@
 				797D524C1FEF848B00B76F6A /* FirebaseDatabaseUtils.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		797D524E1FEF8FA100B76F6A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				797D524F1FEF8FAE00B76F6A /* UserSearchController.swift */,
+				797D52511FEF936500B76F6A /* UserSearchCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		79E470741FECFC9100D89833 /* Models */ = {
@@ -559,6 +573,7 @@
 				792CEB131FEB3BB400BA7543 /* MainTabBarController.swift in Sources */,
 				79E470761FECFC9B00D89833 /* Post.swift in Sources */,
 				79E470731FECDF9200D89833 /* SharePhotoController.swift in Sources */,
+				797D52501FEF8FAE00B76F6A /* UserSearchController.swift in Sources */,
 				792CEB221FEB884F00BA7543 /* PhotoSelectorHeader.swift in Sources */,
 				792CEB1B1FEB509500BA7543 /* LoginController.swift in Sources */,
 				7943DEC41FEAFBE70093A783 /* AppDelegate.swift in Sources */,
@@ -567,6 +582,7 @@
 				797D524D1FEF848B00B76F6A /* FirebaseDatabaseUtils.swift in Sources */,
 				79E470781FECFD9900D89833 /* UserProfilePhotoCell.swift in Sources */,
 				7943DEF61FEB07EF0093A783 /* Extensions.swift in Sources */,
+				797D52521FEF936500B76F6A /* UserSearchCell.swift in Sources */,
 				792CEB201FEB855700BA7543 /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
