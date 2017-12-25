@@ -97,11 +97,8 @@ class SharePhotoController: UIViewController {
                 print("failed to save post to url:", err)
                 return
             }
-            
             print("successfuly saved pos to db")
             self.dismiss(animated: true, completion: nil)
-            
-
             NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
         }
     }

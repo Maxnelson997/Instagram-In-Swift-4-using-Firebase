@@ -63,14 +63,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     
     fileprivate func fetchPosts() {
-        
-        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         Database.fetchUserWith(uid: uid) { user in
             self.fetchPostsWithUser(user: user)
         }
-
     }
     
     fileprivate func fetchPostsWithUser(user: User) {
@@ -85,7 +82,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             dictionaries.forEach({ (key,value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 self.posts.append(post)
             })
             
@@ -143,6 +141,7 @@ extension HomeController: HomePostCellDelegate {
     
     func didTapComment(post: Post) {
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
 }

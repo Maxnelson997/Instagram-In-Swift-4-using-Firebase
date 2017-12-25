@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsController: UICollectionViewController {
+    
+    var post: Post?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,15 +40,30 @@ class CommentsController: UICollectionViewController {
         sendIt.addTarget(self, action: #selector(self.handleSendIt), for: .touchUpInside)
         containerView.addSubview(sendIt)
         sendIt.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
-        
-        let tf = UITextField()
-        tf.placeholder = "Leave a comment"
-        containerView.addSubview(tf)
-        tf.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: sendIt.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        containerView.addSubview(commentTextField)
+        commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: sendIt.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         return containerView
     }()
     
+    let commentTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Leave a comment"
+        return tf
+    }()
+    
     @objc func handleSendIt() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let postId = post?.id else { return }
+        let values = ["text": commentTextField.text ?? "", "creationDate": Date().timeIntervalSince1970, "uid": uid] as [String : Any]
+        Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("error sending comment:", err)
+                return
+            }
+            
+            print("successfully inserted a comment into the db")
+            
+        }
         
     }
     
