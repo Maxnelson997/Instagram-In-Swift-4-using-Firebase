@@ -103,6 +103,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let titleImage = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white").withRenderingMode(.alwaysTemplate))
         titleImage.tintColor = .black
         navigationItem.titleView = titleImage
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.handleCamera))
+    }
+    
+    @objc func handleCamera() {
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
 
     //datasource
