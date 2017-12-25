@@ -120,6 +120,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
         cell.post = posts[indexPath.item]
+        cell.delegate = self
         return cell
     }
     
@@ -138,3 +139,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
 }
 
+extension HomeController: HomePostCellDelegate {
+    
+    func didTapComment(post: Post) {
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentsController, animated: true)
+    }
+}

@@ -72,6 +72,7 @@ class PreviewPhotoContainerView: UIView {
                 savedLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 100)
                 savedLabel.center = self.center
                 savedLabel.textAlignment = .center
+                savedLabel.font = UIFont.boldSystemFont(ofSize: 14)
                 savedLabel.layer.cornerRadius = 12
                 savedLabel.layer.masksToBounds = true
                 self.addSubview(savedLabel)
