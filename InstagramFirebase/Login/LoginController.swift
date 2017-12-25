@@ -55,7 +55,7 @@ class LoginController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
-        button.isEnabled = false
+        button.isEnabled = true
         return button
     }()
     

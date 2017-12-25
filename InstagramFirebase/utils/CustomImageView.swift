@@ -17,7 +17,9 @@ class CustomImageView: UIImageView {
     func loadImage(urlString: String) {
         
         lastURLUsedToLoadImage = urlString
+        //nil image removes image swap thats ugly & nasty. && doesnt belong!
         
+        self.image = nil
         //first check cache for the image. if cache contains image, we can avoid the url session!
         if let cachedImage = imageCache[urlString] {
             self.image = cachedImage
