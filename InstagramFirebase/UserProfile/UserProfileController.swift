@@ -14,12 +14,16 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     var cellId:String = "cellid"
     var headerId:String = "headerId"
     
+    var userId: String?
+    
+    var user: User?
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = .white
-        
-        navigationItem.title = Auth.auth().currentUser?.uid
+
         
         fetchUser()
         
@@ -28,13 +32,25 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         setupLogoutButton()
         
-        fetchOrderedPosts()
     }
     
-    var posts = [Post]()
+
+    fileprivate func fetchUser() {
+        
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
+        
+        Database.fetchUserWith(uid: uid) { (user) in
+            self.user = user
+            self.navigationItem.title = self.user?.username
+            //reload data to re-execute header size & rendering of header, to feed it a new object.
+            self.collectionView?.reloadData()
+            
+            self.fetchOrderedPosts()
+        }
+    }
     
     fileprivate func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = user?.uid else { return }
         let ref = Database.database().reference().child("posts").child(uid)
         
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
@@ -42,10 +58,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             guard let user = self.user else { return }
             let post = Post(user: user, dictionary: dictionary)
             self.posts.insert(post, at: 0)
-//            self.posts.append(post)
-            
+
             self.collectionView?.reloadData()
-            
         }) { (err) in
             print("failed to fetch ordered posts:", err)
         }
@@ -105,29 +119,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: view.frame.width, height: 200)
     }
     
-    var user: User?
-    
-    fileprivate func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        Database.fetchUserWith(uid: uid) { (user) in
-            self.user = user
-            self.navigationItem.title = self.user?.username
-            //reload data to re-execute header size & rendering of header, to feed it a new object.
-            self.collectionView?.reloadData()
-        }
-        
-//        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//            print(snapshot.value ?? "")
-//            
-//            guard let dictionary = snapshot.value as? [String: Any] else { return }
-//            
-//
-//        }) { (err) in
-//            print("failed to fetch user:", err)
-//        }
-    }
-    
+
     
     
 }

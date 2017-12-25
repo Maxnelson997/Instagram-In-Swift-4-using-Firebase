@@ -16,6 +16,18 @@ class UserProfileHeader: UICollectionViewCell {
             guard let profileImageUrl = user?.profileImageUrl else { return }
             profileImageView.loadImage(urlString: profileImageUrl)
             usernameLabel.text = user?.username
+            
+            setupEditFollowButton()
+            
+            
+        }
+    }
+    
+    fileprivate func setupEditFollowButton() {
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else { return }
+        guard let userId = user?.uid else { return }
+        if loggedInUserId != userId {
+            editProfileButton.setTitle("Follow", for: .normal)
         }
     }
     

@@ -10,6 +10,14 @@ import UIKit
 
 class UserSearchCell: UICollectionViewCell {
     
+    var user: User? {
+        didSet {
+            setAttributedText()
+            guard let urlString = user?.profileImageUrl else { return }
+            profileImageView.loadImage(urlString: urlString)
+        }
+    }
+    
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.clipsToBounds = true
@@ -22,15 +30,17 @@ class UserSearchCell: UICollectionViewCell {
     let userLabel: UILabel = {
         let l = UILabel()
         l.font = UIFont.boldSystemFont(ofSize: 14)
-        let attributedText = NSMutableAttributedString(string: "u-name", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 1)]))
-        attributedText.append(NSAttributedString(string: "4 posts", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.gray]))
-        l.attributedText = attributedText
         l.numberOfLines = 0
         return l
     }()
-    
 
+    fileprivate func setAttributedText() {
+        guard let user = self.user else { return }
+        let attributedText = NSMutableAttributedString(string: user.username, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: "\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 1)]))
+        attributedText.append(NSAttributedString(string: "4 posts", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        userLabel.attributedText = attributedText
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
