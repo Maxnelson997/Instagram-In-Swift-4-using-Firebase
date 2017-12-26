@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
@@ -30,25 +31,27 @@ class LoginController: UIViewController {
         return button
     }()
     
-    let emailTextField: UITextField = {
+    lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(self.handleTextInputChange), for: .valueChanged)
         return tf
     }()
     
-    let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(self.handleTextInputChange), for: .valueChanged)
         return tf
     }()
     
-    let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
@@ -56,8 +59,38 @@ class LoginController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(self.handleLogin), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleLogin() {
+        guard let username = emailTextField.text else { return }
+        guard let password = passwordTextField.text else  { return }
+        Auth.auth().signIn(withEmail: username, password: password) { (_, err) in
+            if let err = err {
+                print("failed loggin in:",err)
+                return
+            }
+
+
+            print("login successful for user:")
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+    }
+    
+    @objc func handleTextInputChange() {
+        loginButton.isEnabled = false
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
+        
+        if isFormValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = .mainBlue
+        } else {
+            loginButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

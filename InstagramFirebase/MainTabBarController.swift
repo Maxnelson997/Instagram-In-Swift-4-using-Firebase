@@ -27,6 +27,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        if Auth.auth().currentUser == nil {
+//            //attempt to present login controller which isnt in the window hierarchy!
+//            DispatchQueue.main.async {
+//                //wait until tabbarcontroller is in the ui then present it.
+//                let loginController = LoginController()
+//                let navController = UINavigationController(rootViewController: loginController)
+//                self.present(navController, animated: true, completion: nil)
+//            }
+//            return
+//        }
+//        delegate = self
+//        setupViewControllers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if Auth.auth().currentUser == nil {
             //attempt to present login controller which isnt in the window hierarchy!
             DispatchQueue.main.async {

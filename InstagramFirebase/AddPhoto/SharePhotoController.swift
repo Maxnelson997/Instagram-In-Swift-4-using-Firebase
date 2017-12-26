@@ -35,8 +35,8 @@ class SharePhotoController: UIViewController {
         return iv
     }()
     
-    let textView: UITextView = {
-        let tv = UITextView()
+    let textView:UITextField = {
+        let tv = UITextField()
         tv.font = UIFont.systemFont(ofSize: 14)
         return tv
     }()
@@ -85,7 +85,7 @@ class SharePhotoController: UIViewController {
     
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         guard let postImage = selectedImage else { return }
-        guard let caption = textView.text, caption.characters.count > 0 else { return }
+        guard let caption = textView.text, caption.count > 0 else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let userPostRef = Database.database().reference().child("posts").child(uid)
         let ref = userPostRef.childByAutoId()
