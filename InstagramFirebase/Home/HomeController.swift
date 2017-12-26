@@ -142,7 +142,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         height += view.frame.width
         height += 50
         //post bottom controls
-        height += 85
+        height += 60
         
         //caption
         
