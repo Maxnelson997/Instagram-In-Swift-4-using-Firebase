@@ -10,10 +10,12 @@ import Foundation
 
 struct Post {
     var id: String?
-    let user:User
+    let user: User
     let imageUrl: String
     let caption: String
     let creationDate: Date
+    
+    var hasLiked: Bool = false
     
     init(user: User, dictionary: [String: Any]) {
         self.user = user

@@ -10,22 +10,49 @@ import UIKit
 
 protocol HomePostCellDelegate {
     func didTapComment(post: Post)
+    func didLike(for cell: HomePostCell)
 }
 
 class HomePostCell: UICollectionViewCell {
     
     var delegate: HomePostCellDelegate?
     
+//    var post: Post? {
+//        didSet {
+//            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+//
+//            guard let imageUrl = post?.imageUrl else { return }
+//            photoImageView.loadImage(urlString: imageUrl)
+//
+//            guard let username = post?.user.username else { return }
+//            userLabel.text = username
+//
+//            guard let profImageUrl = post?.user.profileImageUrl else { return }
+//            userProfileImageView.loadImage(urlString: profImageUrl)
+//
+//            setupAttributedCaption()
+//        }
+//    }
+//
+
     var post: Post? {
         didSet {
-            guard let imageUrl = post?.imageUrl else { return }
-            photoImageView.loadImage(urlString: imageUrl)
+            guard let postImageUrl = post?.imageUrl else { return }
             
-            guard let username = post?.user.username else { return }
-            userLabel.text = username
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
             
-            guard let profImageUrl = post?.user.profileImageUrl else { return }
-            userProfileImageView.loadImage(urlString: profImageUrl)
+            photoImageView.loadImage(urlString: postImageUrl)
+            
+            userLabel.text = "TEST USERNAME"
+            
+            //wouldn't this be nice?
+            userLabel.text = post?.user.username
+            
+            guard let profileImageUrl = post?.user.profileImageUrl else { return }
+            
+            userProfileImageView.loadImage(urlString: profileImageUrl)
+            
+            //            captionLabel.text = post?.caption
             
             setupAttributedCaption()
         }
@@ -71,9 +98,10 @@ class HomePostCell: UICollectionViewCell {
         return u
     }()
     
-    let likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let u = UIButton(type: .system)
         u.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        u.addTarget(self, action: #selector(self.handleLike), for: .touchUpInside)
         return u
     }()
     
@@ -83,6 +111,11 @@ class HomePostCell: UICollectionViewCell {
         u.addTarget(self, action: #selector(self.handleComment), for: .touchUpInside)
         return u
     }()
+    
+    @objc func handleLike() {
+        print("handling post like")
+        delegate?.didLike(for: self)
+    }
     
     @objc func handleComment() {
         print("show dem comments")
@@ -119,7 +152,7 @@ class HomePostCell: UICollectionViewCell {
         
         userLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: photoImageView.topAnchor, right: optionsButton.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
-        optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 00, paddingRight: 0, width: 44, height: 44)
+        optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 44)
         photoImageView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
