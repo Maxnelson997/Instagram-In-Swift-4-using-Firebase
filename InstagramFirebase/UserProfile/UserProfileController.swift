@@ -18,6 +18,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     var userId: String?
     
     var isGridView: Bool = true
+    var isFinishedPaging:Bool = false
     
     var user: User?
     var posts = [Post]()
@@ -26,16 +27,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         super.viewDidLoad()
         
         collectionView?.backgroundColor = .white
-
-        
-        fetchUser()
-        
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: homePostCellId)
         
+        fetchUser()
         setupLogoutButton()
-        
     }
     
 
@@ -49,7 +46,53 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             //reload data to re-execute header size & rendering of header, to feed it a new object.
             self.collectionView?.reloadData()
             
-            self.fetchOrderedPosts()
+            self.paginatePosts()
+        }
+    }
+    
+    @objc fileprivate func paginatePosts() {
+        guard let uid = self.user?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+//
+//        let value = "-L1GTmcCl9n7K76C0hEl"
+//        let query = ref.queryOrderedByKey().queryStarting(atValue: value).queryLimited(toFirst: 6)
+        
+//        var query = ref.queryOrderedByKey()
+
+        var query = ref.queryOrdered(byChild: "creationDate")
+        
+        if posts.count > 0 {
+            guard let value = posts.last?.creationDate.timeIntervalSince1970 else { return }
+            query = query.queryEnding (atValue: value)
+        }
+        
+        query.queryLimited(toLast: 4).observeSingleEvent(of: .value, with: { (snapshot) in
+           
+            guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
+            allObjects.reverse()
+            if allObjects.count < 4 {
+                self.isFinishedPaging = true
+            }
+            
+            if self.posts.count > 0 && allObjects.count > 0{
+                allObjects.removeFirst()
+            }
+
+            guard let user = self.user else { return }
+            
+            allObjects.forEach({ (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = snapshot.key
+                print(post.id ?? "nig")
+                self.posts.append(post)
+            })
+            self.posts.forEach({ (post) in
+                
+            })
+            self.collectionView?.reloadData()
+        }) { (err) in
+            print("failed to perform post pagination:",err)
         }
     }
     
@@ -95,6 +138,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //paginate
+        if indexPath.item == self.posts.count - 1 && !isFinishedPaging  {
+            print("paginating 4 images/posts")
+            paginatePosts()
+        }
         if isGridView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
             cell.post = posts[indexPath.item]
