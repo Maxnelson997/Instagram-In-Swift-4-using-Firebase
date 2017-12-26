@@ -72,39 +72,42 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     
     fileprivate func fetchPostsWithUser(user: User) {
-        
         let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.collectionView?.refreshControl?.endRefreshing()
             
-            guard let dictionaries = snapshot.value as? [String:Any] else { return }
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
-            dictionaries.forEach({ (key,value) in
+            dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
                 
                 guard let uid = Auth.auth().currentUser?.uid else { return }
-                
-                Database.database().reference().child("likes").child(key).child(uid).observe(.value, with: { (snapshot) in
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    //                    print(snapshot)
+                    
                     if let value = snapshot.value as? Int, value == 1 {
                         post.hasLiked = true
                     } else {
                         post.hasLiked = false
                     }
+                    
                     self.posts.append(post)
                     self.posts.sort(by: { (p1, p2) -> Bool in
                         return p1.creationDate.compare(p2.creationDate) == .orderedDescending
                     })
                     self.collectionView?.reloadData()
+                    
                 }, withCancel: { (err) in
-                    print("failed to check if user liked image/post:",err)
+                    print("Failed to fetch like info for post:", err)
                 })
             })
+            
         }) { (err) in
-            print("failed to fetch post:", err)
+            print("Failed to fetch posts:", err)
         }
     }
     

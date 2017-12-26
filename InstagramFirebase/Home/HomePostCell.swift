@@ -17,47 +17,25 @@ class HomePostCell: UICollectionViewCell {
     
     var delegate: HomePostCellDelegate?
     
-//    var post: Post? {
-//        didSet {
-//            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
-//
-//            guard let imageUrl = post?.imageUrl else { return }
-//            photoImageView.loadImage(urlString: imageUrl)
-//
-//            guard let username = post?.user.username else { return }
-//            userLabel.text = username
-//
-//            guard let profImageUrl = post?.user.profileImageUrl else { return }
-//            userProfileImageView.loadImage(urlString: profImageUrl)
-//
-//            setupAttributedCaption()
-//        }
-//    }
-//
-
     var post: Post? {
         didSet {
-            guard let postImageUrl = post?.imageUrl else { return }
-            
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
-            
-            photoImageView.loadImage(urlString: postImageUrl)
-            
-            userLabel.text = "TEST USERNAME"
-            
-            //wouldn't this be nice?
-            userLabel.text = post?.user.username
-            
-            guard let profileImageUrl = post?.user.profileImageUrl else { return }
-            
-            userProfileImageView.loadImage(urlString: profileImageUrl)
-            
-            //            captionLabel.text = post?.caption
-            
+
+            guard let imageUrl = post?.imageUrl else { return }
+            photoImageView.loadImage(urlString: imageUrl)
+
+            guard let username = post?.user.username else { return }
+            userLabel.text = username
+
+            guard let profImageUrl = post?.user.profileImageUrl else { return }
+            userProfileImageView.loadImage(urlString: profImageUrl)
+
             setupAttributedCaption()
         }
     }
-    
+
+
+
     fileprivate func setupAttributedCaption() {
         guard let post = self.post else { return }
         
