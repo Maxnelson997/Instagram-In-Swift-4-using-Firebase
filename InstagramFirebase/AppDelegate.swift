@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("registerd with FCM with toeken:", fcmToken)
+        print("registerd with FCM with token:\n\n",fcmToken,"\n\nend token\n")
     }
     
     //listen to notifications
@@ -62,6 +62,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("registered for notifications:",deviceToken)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let followerId = userInfo["followerId"] as? String {
+            print(followerId)
+            let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewLayout())
+            userProfileController.userId = followerId
+            
+            if let mainTabBarController = window?.rootViewController as? MainTabBarController {
+                mainTabBarController.selectedIndex = 0
+                mainTabBarController.presentedViewController?.dismiss(animated: true, completion: nil)
+                if let homeNavigationController = mainTabBarController.viewControllers?.first as? UINavigationController {
+                    homeNavigationController.pushViewController(userProfileController, animated: true)
+                }
+            }
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
